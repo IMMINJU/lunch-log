@@ -488,9 +488,9 @@ export const NaverMap = forwardRef<NaverMapHandle, NaverMapProps>(function Naver
     );
   }
 
-  // 내 위치(여민빌딩)로 이동
+  // 내 위치(여민빌딩)로 이동 (현재 줌 유지)
   const handleMyLocationClick = () => {
-    panTo(DEFAULT_CENTER.lat, DEFAULT_CENTER.lng, 16);
+    panTo(DEFAULT_CENTER.lat, DEFAULT_CENTER.lng);
   };
 
   return (
