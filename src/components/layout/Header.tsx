@@ -22,8 +22,7 @@ export function Header() {
             </svg>
           </div>
           <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-            <span className="hidden sm:inline">점심 기록</span>
-            <span className="sm:hidden">점심</span>
+            LunchLog
           </h1>
         </Link>
 
