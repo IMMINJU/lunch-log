@@ -10,12 +10,13 @@ import { useFilterStore } from "@/stores/useFilterStore";
 import { useUserStore } from "@/stores/useUserStore";
 import { AddRestaurantForm, type AddRestaurantFormData } from "@/components/form";
 import { Modal, BottomSheet } from "@/components/ui";
-import { useRestaurants, useCreateRestaurant, useIsDesktop } from "@/hooks";
+import { useRestaurants, useCreateRestaurant, useIsDesktop, useMounted } from "@/hooks";
 
 export default function HomePage() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isListOpen, setIsListOpen] = useState(false);
 
+  const mounted = useMounted();
   const isDesktop = useIsDesktop();
   const isReadonly = useUserStore((s) => s.isReadonly());
   const { data: restaurants = [], isLoading } = useRestaurants();
@@ -64,10 +65,10 @@ export default function HomePage() {
   );
 
   return (
-    <div className="h-screen overflow-hidden bg-gray-50">
+    <div className="h-screen-safe overflow-hidden bg-gray-50">
       <Header />
 
-      <main className="h-[calc(100vh-57px)] flex">
+      <main className="h-main-safe flex">
         {/* PC: 왼쪽 사이드바 */}
         <div className="hidden lg:flex lg:flex-col lg:w-[380px] lg:border-r lg:border-gray-200 bg-white">
           <div className="flex-shrink-0 p-4 border-b border-gray-100 space-y-3">
@@ -193,7 +194,7 @@ export default function HomePage() {
       </main>
 
       {/* FAB: 가게 추가 버튼 */}
-      {!isReadonly && (
+      {mounted && !isReadonly && (
         <button
           onClick={() => setIsAddModalOpen(true)}
           className="fixed bottom-6 right-6 lg:bottom-20 lg:right-4 w-14 h-14 lg:w-10 lg:h-10 bg-sky-500 hover:bg-sky-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center z-50"

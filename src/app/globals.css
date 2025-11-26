@@ -17,3 +17,20 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.h-screen-safe {
+  height: 100svh;
+}
+
+.h-main-safe {
+  height: calc(100svh - 57px);
+}
+
+@supports (height: 100svh) {
+  .h-screen-safe {
+    height: 100svh;
+  }
+  .h-main-safe {
+    height: calc(100svh - 57px);
+  }
+}

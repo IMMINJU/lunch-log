@@ -119,7 +119,7 @@ export default function RestaurantDetailPage() {
   );
 
   return (
-    <div className="h-screen overflow-hidden bg-gray-50 flex flex-col">
+    <div className="h-screen-safe overflow-hidden bg-gray-50 flex flex-col">
       {/* 헤더 */}
       <header className="flex-shrink-0 bg-white border-b border-gray-200 z-40">
         <div className="flex items-center justify-between px-4 py-3">
