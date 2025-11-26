@@ -7,3 +7,4 @@ export { ConfirmModal } from "./ConfirmModal";
 export { Dropdown } from "./Dropdown";
 export { LoadingSpinner, LoadingState, FullPageLoading } from "./LoadingSpinner";
 export { ErrorState, NotFoundState } from "./ErrorState";
+export { ImageModal } from "./ImageModal";

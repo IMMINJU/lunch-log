@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui";
+import { Card, CardContent, ImageModal } from "@/components/ui";
 import { StarRating } from "@/components/form";
 import { getPriceEmoji } from "@/constants";
 import { formatDate } from "@/lib/utils";
@@ -15,6 +16,7 @@ interface VisitCardProps {
 }
 
 export function VisitCard({ visit, onEdit, onDelete, isDeleting }: VisitCardProps) {
+  const [isImageOpen, setIsImageOpen] = useState(false);
   const imageUrl = visit.hasImage ? `/api/visit/${visit.id}/image` : null;
 
   return (
@@ -50,7 +52,11 @@ export function VisitCard({ visit, onEdit, onDelete, isDeleting }: VisitCardProp
 
           {/* 사진 썸네일 - 우측 */}
           {imageUrl && (
-            <div className="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden bg-gray-100">
+            <button
+              type="button"
+              onClick={() => setIsImageOpen(true)}
+              className="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden bg-gray-100 cursor-zoom-in"
+            >
               <Image
                 src={imageUrl}
                 alt={visit.menu}
@@ -59,7 +65,7 @@ export function VisitCard({ visit, onEdit, onDelete, isDeleting }: VisitCardProp
                 className="w-full h-full object-cover"
                 unoptimized
               />
-            </div>
+            </button>
           )}
         </div>
 
@@ -94,6 +100,16 @@ export function VisitCard({ visit, onEdit, onDelete, isDeleting }: VisitCardProp
           </div>
         </div>
       </CardContent>
+
+      {/* 이미지 확대 모달 */}
+      {imageUrl && (
+        <ImageModal
+          isOpen={isImageOpen}
+          onClose={() => setIsImageOpen(false)}
+          src={imageUrl}
+          alt={visit.menu}
+        />
+      )}
     </Card>
   );
 }
